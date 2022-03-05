@@ -4,7 +4,7 @@ from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardMarkup, InlineKeyboardMarkup
 
-from exceptions.helper import raise_exc
+from ..exceptions.helper import raise_exc
 
 
 class Menu:
