@@ -35,12 +35,12 @@ class Menu:
     def _get_handler_mapping(cls, target: Union[Message, CallbackQuery]) -> dict:
         return {
             False: {
-                Message: target.answer,
-                CallbackQuery: target.message.answer
+                Message: target.answer if isinstance(target, Message) else None,
+                CallbackQuery: target.message.answer if isinstance(target, CallbackQuery) else None
             },
             True: {
-                Message: target.edit_text,
-                CallbackQuery: target.message.edit_text
+                Message: target.edit_text if isinstance(target, Message) else None,
+                CallbackQuery: target.message.edit_text if isinstance(target, CallbackQuery) else None
             }
         }
 
