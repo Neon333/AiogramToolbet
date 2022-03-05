@@ -92,9 +92,13 @@ class Menu:
         """
 
         handler = cls._get_answer_handler(target=target_message, render_in=True)
+
+        keyboard = await cls._get_keyboard()
+        keyboard = keyboard if isinstance(keyboard, InlineKeyboardMarkup) else None
+
         return await handler(
             text=await cls._get_text(),
-            reply_markup=await cls._get_keyboard(),
+            reply_markup=keyboard,
             parse_mode=cls.parse_mode
         )
 
