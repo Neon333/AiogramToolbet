@@ -1,7 +1,7 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
-from menu import MenuType
+from . import MenuType
 
 
 def render_menu(menu_cls: MenuType, integrate: bool = False):
