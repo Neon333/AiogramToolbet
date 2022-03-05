@@ -91,7 +91,7 @@ class Menu:
         :return:
         """
 
-        handler = cls._get_answer_handler(target=target_message)
+        handler = cls._get_answer_handler(target=target_message, render_in=True)
         return await handler(
             text=await cls._get_text(),
             reply_markup=await cls._get_keyboard(),
