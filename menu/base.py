@@ -29,19 +29,13 @@ class Menu:
     @classmethod
     def _get_answer_handler(cls, target: Union[Message, CallbackQuery], render_in: bool = False) -> callable:
         handler_map = cls._get_handler_mapping(target)
-        return handler_map[render_in][type(target)]
+        return handler_map[render_in]
 
     @classmethod
     def _get_handler_mapping(cls, target: Union[Message, CallbackQuery]) -> dict:
         return {
-            False: {
-                Message: target.answer if isinstance(target, Message) else None,
-                CallbackQuery: target.message.answer if isinstance(target, CallbackQuery) else None
-            },
-            True: {
-                Message: target.edit_text if isinstance(target, Message) else None,
-                CallbackQuery: target.message.edit_text if isinstance(target, CallbackQuery) else None
-            }
+            False: target.answer if isinstance(target, Message) else target.message.answer,
+            True: target.edit_text if isinstance(target, Message) else target.message.edit_text
         }
 
     @classmethod
