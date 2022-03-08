@@ -39,7 +39,7 @@ class Menu:
         }
 
     @classmethod
-    async def _get_keyboard(cls) -> Union[ReplyKeyboardMarkup, InlineKeyboardMarkup, None]:
+    async def _get_keyboard(cls, **kwargs) -> Union[ReplyKeyboardMarkup, InlineKeyboardMarkup, None]:
         """
         Method returns current keyboard instance that will be attached to message.
         You can override this method to provide dynamic keyboard generation.
@@ -61,7 +61,7 @@ class Menu:
         return cls.static_keyboard if cls.static_keyboard is not None else raise_exc(NotImplementedError)
 
     @classmethod
-    async def _get_text(cls) -> str:
+    async def _get_text(cls, **kwargs) -> str:
         return cls.static_text if cls.static_text is not None else raise_exc(NotImplementedError)
 
     @classmethod
