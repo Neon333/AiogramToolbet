@@ -76,8 +76,8 @@ class Menu:
 
         handler = cls._get_answer_handler(target=initiator)
         return await handler(
-            text=await cls._get_text(),
-            reply_markup=await cls._get_keyboard(),
+            text=await cls._get_text(**kwargs),
+            reply_markup=await cls._get_keyboard(**kwargs),
             parse_mode=cls.parse_mode
         )
 
@@ -93,11 +93,11 @@ class Menu:
 
         handler = cls._get_answer_handler(target=target_message, render_in=True)
 
-        keyboard = await cls._get_keyboard()
+        keyboard = await cls._get_keyboard(**kwargs)
         keyboard = keyboard if isinstance(keyboard, InlineKeyboardMarkup) else None
 
         return await handler(
-            text=await cls._get_text(),
+            text=await cls._get_text(**kwargs),
             reply_markup=keyboard,
             parse_mode=cls.parse_mode
         )

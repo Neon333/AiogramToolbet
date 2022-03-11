@@ -26,16 +26,7 @@ class MediaMenu(Menu):
 
         return await handler(
             photo=InputFile(cls.photo_path),
-            caption=await cls._get_text(),
-            reply_markup=await cls._get_keyboard(),
+            caption=await cls._get_text(**kwargs),
+            reply_markup=await cls._get_keyboard(**kwargs),
             parse_mode=cls.parse_mode
         )
-
-    # @classmethod
-    # async def render_in(cls, target_message: Union[Message, CallbackQuery], state: FSMContext, **kwargs):
-    #     handler = cls._get_answer_handler(target=target_message, render_in=True)
-    #     return await handler(
-    #         caption=await cls._get_text(),
-    #         reply_markup=await cls._get_keyboard(),
-    #         parse_mode=cls.parse_mode
-    #     )
