@@ -12,11 +12,10 @@ class MediaMenu(Menu):
 
     @classmethod
     def _get_handler_mapping(cls, target: Union[Message, CallbackQuery]) -> dict:
-        handlers = super()._get_handler_mapping(target)
-        handlers[False].update({Message: target.answer_photo, CallbackQuery: target.message.answer_photo})
-        handlers[True].update({Message: target.edit_media, CallbackQuery: target.message.edit_media})
-
-        return handlers
+        return {
+            False: target.answer_photo if isinstance(target, Message) else target.message.answer_photo,
+            True: target.edit_media if isinstance(target, Message) else target.message.edit_media
+        }
 
     @classmethod
     async def render(cls, initiator: Union[Message, CallbackQuery], state: FSMContext, **kwargs):
